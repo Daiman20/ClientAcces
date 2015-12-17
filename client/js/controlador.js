@@ -583,7 +583,7 @@ $scope.questlogout= function (){
 ************************ con num cuenta(transferenciaEntreTusCuentas) ***********************
 *********************************************************************************************/
 //metodo que consulta info de cliente con num cuenta
- $scope.dataClientAcount= function (){ 
+$scope.dataClientAcount= function (){ 
   	$('#verificaB').attr('disabled', true);
 	//limpio los datos
 	   $("#idVer").html("");
@@ -593,9 +593,18 @@ $scope.questlogout= function (){
     /////////////
 	var datosUsuario = $("#cuenta2").val();
 if(datosUsuario.trim()!=""){
+ // *******************************************
+ 
+ 
+$.get('http://104.131.211.44:8000/api/acounts/existeCli',
+  { 
+   iduser:datosUsuario,
+  },function( data ) {
+   console.log(data);
+       // ************************************************
 	//alert(datosUsuario);
 		$("#idVer").html("<strong>Verificando numero de cuenta</strong>");
-    $.get('https://as400-daiman20.c9.io/api/acounts/dataCliAcount',
+    $.get('http://104.131.211.44:8000/api/acounts/dataCliAcount',
   { 
    idacount: datosUsuario,
   },function( data ) {
@@ -606,13 +615,23 @@ if(datosUsuario.trim()!=""){
     $("#ape1Ver").html("<strong>Apellido 1:</strong>"+data.dsAcount.apellido1);
     $("#ape2Ver").html("<strong>Apellido 2:</strong>"+data.dsAcount.apellido2);
     $('#verificaB').attr('disabled', false);
-   }else{alert('hay un error en la consilta')}
+   }else{alert('hay un error en la consulta')}
  }).fail(function(err){
    console.log(err);
    	$("#idVer").html("<strong>El número de Cuenta es invalido</strong>");
   // alert('Error [Tiempo de respuesta agotado]');
   $('#verificaB').attr('disabled', false);
   });
+  
+   
+  }).fail(function(err){
+   console.log(err);
+   	$("#idVer").html("<strong>El número de Cuenta es invalido</strong>");
+   	$('#verificaB').attr('disabled', false);
+  });
+
+ 
+  
  }//fin del if
  else{$("#idVer").html("<strong>Número de cuenta en blanco</strong>");
   $('#verificaB').attr('disabled', false);
