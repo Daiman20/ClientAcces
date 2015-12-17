@@ -19,7 +19,7 @@ $scope.login= function (){
  sessionStorage.removeItem('nom2');
  sessionStorage.removeItem('id');
  if($scope.nU !=null || $scope.pass !=null){
-$.get('https://as400-daiman20.c9.io/api/users/authenticate',
+$.get('http://104.131.211.44:8000/api/users/authenticate',
   { 
    iduser:$scope.nU,
    password:$scope.pass
@@ -65,7 +65,7 @@ $.get('https://as400-daiman20.c9.io/api/users/authenticate',
         });
     }, 4000);
  //esta es una variable bnecesaria en home  
- $.get('https://as400-daiman20.c9.io/api/users/dataclient',
+ $.get('http://104.131.211.44:8000/api/users/dataclient',
   { 
    idusercon: sessionStorage.getItem('id'),
   },function( data ) {
@@ -87,7 +87,7 @@ $.get('https://as400-daiman20.c9.io/api/users/authenticate',
     $scope.idtipo=data.dsCli.nameTypeID;
     //esta parte es para mostrar la cuenta maestra
     var usr=data.idUserCon;
-    $.get('https://as400-daiman20.c9.io/api/users/acountClient',
+    $.get('http://104.131.211.44:8000/api/users/acountClient',
   { 
    iduseracount:usr
   },function( data ) {
@@ -97,7 +97,7 @@ var cuenta =data.cuentasString.split('*');
 $scope.cuMaestra=cuenta[0];
 //en esta parte consultamos el saldo
 var datosUsuario =cuenta[0];
-    $.get('https://as400-daiman20.c9.io/api/acounts/dataAcount',
+    $.get('http://104.131.211.44:8000/api/acounts/dataAcount',
   { 
    idacount: datosUsuario,
   },function( data ) {
@@ -163,7 +163,7 @@ var datosUsuario =cuenta[0];
         });
     }, 2000);
     var usr=sessionStorage.getItem('id');
- $.get('https://as400-daiman20.c9.io/api/users/acountClient',
+ $.get('http://104.131.211.44:8000/api/users/acountClient',
   { 
    iduseracount:usr
   },function( data ) {
@@ -186,7 +186,7 @@ var datosUsuario =cuenta[0];
  $scope.consultaPubAYA= function (){
    $('#ayaConsultaB').attr('disabled', true);
  if($scope.numeroC !=null ){
-$.get('https://as400-daiman20.c9.io/api/services/dataService',
+$.get('http://104.131.211.44:8000/api/services/dataService',
   { 
    numservicio:$scope.numeroC,
    tipo:'01'
@@ -226,7 +226,7 @@ $.get('https://as400-daiman20.c9.io/api/services/dataService',
  $scope.consultaPubICE= function (){
 $('#consultaPubICE').attr('disabled', true);
  if($scope.numeroC !=null ){
-$.get('https://as400-daiman20.c9.io/api/services/dataService',
+$.get('http://104.131.211.44:8000/api/services/dataService',
   { 
    numservicio:$scope.numeroC,
    tipo:'02'
@@ -266,7 +266,7 @@ $.get('https://as400-daiman20.c9.io/api/services/dataService',
 $scope.consultaPubCNFL= function (){
 $('#consultaPubCNFL').attr('disabled', true);
  if($scope.numeroC !=null ){
-$.get('https://as400-daiman20.c9.io/api/services/dataService',
+$.get('http://104.131.211.44:8000/api/services/dataService',
   { 
    numservicio:$scope.numeroC,
    tipo:'03'
@@ -306,7 +306,7 @@ $.get('https://as400-daiman20.c9.io/api/services/dataService',
 $scope.consultaPubICETEL= function (){
  $('#consultaPubICETEL').attr('disabled', true);
  if($scope.numeroC !=null ){
-$.get('https://as400-daiman20.c9.io/api/services/dataService',
+$.get('http://104.131.211.44:8000/api/services/dataService',
   { 
    numservicio:$scope.numeroC,
    tipo:'04'
@@ -344,7 +344,7 @@ $.get('https://as400-daiman20.c9.io/api/services/dataService',
 $scope.consultaReKolbi= function (){
   $('#consultaReKolbi').attr('disabled', true);
  if($scope.numeCelk !=null ){
-$.get('https://as400-daiman20.c9.io/api/services/ConsultaNumeroTel',
+$.get('http://104.131.211.44:8000/api/services/ConsultaNumeroTel',
   { 
    numero:$scope.numeCelk,
    tipoem:'01',
@@ -371,7 +371,7 @@ $.get('https://as400-daiman20.c9.io/api/services/ConsultaNumeroTel',
 $scope.consultaReClaro= function (){
    $('#consultaReClaro').attr('disabled', true);
  if($scope.numeCelC !=null ){
-$.get('https://as400-daiman20.c9.io/api/services/ConsultaNumeroTel',
+$.get('http://104.131.211.44:8000/api/services/ConsultaNumeroTel',
   { 
    numero:$scope.numeCelC,
    tipoem:'02',
@@ -398,7 +398,7 @@ $.get('https://as400-daiman20.c9.io/api/services/ConsultaNumeroTel',
 $scope.consultaReMovi= function (){
   $('#consultaReMovi').attr('disabled', true);
  if($scope.numeCelM !=null ){
-$.get('https://as400-daiman20.c9.io/api/services/ConsultaNumeroTel',
+$.get('http://104.131.211.44:8000/api/services/ConsultaNumeroTel',
   { 
    numero:$scope.numeCelM,
    tipoem:'03',
@@ -428,7 +428,7 @@ $scope.actualizaPago= function (){
  var cuent=$("#sel6").val();
 // alert(cuent+"  "+$scope.monto1);
 if(cuent.trim()!=""){
-$.get('https://as400-daiman20.c9.io/api/services/PagoServicios',
+$.get('http://104.131.211.44:8000/api/services/PagoServicios',
   { 
     numcuenta:cuent,
     montopago:$scope.monto1
@@ -459,7 +459,7 @@ $scope.actualizaPago2= function (){
  var cuent=$("#sel5").val();
 // alert(cuent+"  "+$scope.montoC);
 if(cuent.trim()!=""){
-$.get('https://as400-daiman20.c9.io/api/services/PagoServicios',
+$.get('http://104.131.211.44:8000/api/services/PagoServicios',
   { 
     numcuenta:cuent,
     montopago:$scope.montoC
@@ -526,7 +526,7 @@ $scope.questlogout= function (){
  $scope.monto=monto1;
  
  var usr=sessionStorage.getItem('id');
- $.get('https://as400-daiman20.c9.io/api/users/acountClient',
+ $.get('http://104.131.211.44:8000/api/users/acountClient',
   { 
    iduseracount:usr
   },function( data ) {
@@ -562,7 +562,7 @@ $scope.questlogout= function (){
   $scope.ccuenta= function (){
    var ele= $("#sel").val();
              var datosUsuario = ele;
-    $.get('https://as400-daiman20.c9.io/api/acounts/dataAcount',
+    $.get('http://104.131.211.44:8000/api/acounts/dataAcount',
   { 
    idacount: datosUsuario,
   },function( data ) {
@@ -583,7 +583,7 @@ $scope.questlogout= function (){
 ************************ con num cuenta(transferenciaEntreTusCuentas) ***********************
 *********************************************************************************************/
 //metodo que consulta info de cliente con num cuenta
-$scope.dataClientAcount= function (){ 
+  $scope.dataClientAcount= function (){ 
   	$('#verificaB').attr('disabled', true);
 	//limpio los datos
 	   $("#idVer").html("");
@@ -663,7 +663,7 @@ if(monto1==null || cuenta1==null || cuenta2==null || monto1.trim()==""|| cuenta1
 		$("#myErrorBlank").modal("hide");
   },2000);
 }else{
-    $.get('https://as400-daiman20.c9.io/api/acounts/transac',
+    $.get('http://104.131.211.44:8000/api/acounts/transac',
   { 
    idacount1: cuenta1,
    idacount2: cuenta2,
@@ -710,7 +710,7 @@ if(monto1==null || cuenta1==null || cuenta2==null || monto1.trim()==""|| cuenta1
 		$("#myErrorBlank").modal("hide");
   },2000);
 }else{
-    $.get('https://as400-daiman20.c9.io/api/acounts/transac',
+    $.get('http://104.131.211.44:8000/api/acounts/transac',
   { 
    idacount1: cuenta1,
    idacount2: cuenta2,
@@ -799,7 +799,7 @@ var cuenta2 = '';
 //metodo que consulta numeros de cuenta de un cliente
 function numCuenta(id){
 	
-	  $.get('https://as400-daiman20.c9.io/api/users/numCuenta',
+	  $.get('http://104.131.211.44:8000/api/users/numCuenta',
   { 
    idusercon: id,
   },function( data ) {
@@ -814,7 +814,7 @@ function numCuenta(id){
 //carga la info de home 
   ///////////////////////////////////////////////////////////
  function initInfo ($scope){
-    $.get('https://as400-daiman20.c9.io/api/users/dataclient',
+    $.get('http://104.131.211.44:8000/api/users/dataclient',
   { 
    idusercon: sessionStorage.getItem('id'),
   },function( data ) {
@@ -836,7 +836,7 @@ function numCuenta(id){
     $scope.idtipo=data.dsCli.nameTypeID;
     //esta parte es para mostrar la cuenta maestra
     var usr=data.idUserCon;
-    $.get('https://as400-daiman20.c9.io/api/users/acountClient',
+    $.get('http://104.131.211.44:8000/api/users/acountClient',
   { 
    iduseracount:usr
   },function( data ) {
@@ -846,7 +846,7 @@ var cuenta =data.cuentasString.split('*');
 $scope.cuMaestra=cuenta[0];
 //en esta parte consultamos el saldo
 var datosUsuario =cuenta[0];
-    $.get('https://as400-daiman20.c9.io/api/acounts/dataAcount',
+    $.get('http://104.131.211.44:8000/api/acounts/dataAcount',
   { 
    idacount: datosUsuario,
   },function( data ) {
@@ -883,7 +883,7 @@ window.location="index.html";
 
 function numCuenta(){
 	var datosUsuario = sessionStorage.getItem('id');
-	  $.get('https://as400-daiman20.c9.io/api/users/numCuenta',
+	  $.get('http://104.131.211.44:8000/api/users/numCuenta',
   { 
    idusercon: datosUsuario,
   },function( data ) {
